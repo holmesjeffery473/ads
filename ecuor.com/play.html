@@ -17,6 +17,7 @@
 
         ttq.load('D8GKN03C77U5P5NBP3N0');
         ttq.page();
+        ttq.track('ViewContent');
         }(window, document, 'ttq');
     </script>
     <!-- TikTok Pixel Code End -->
@@ -128,7 +129,17 @@
 
 
     window.gotoPlayGame = function () {
-        window.location.href = gamedata.url;
+        if (window.ttq) {
+            ttq.track('ClickButton', {
+                content_name: gamedata?.title || title || 'game_play',
+                content_type: 'game',
+                button_name: 'Play'
+            });
+        }
+
+        setTimeout(() => {
+            window.location.href = gamedata.url;
+        }, 300);
     }
 
 </script>
